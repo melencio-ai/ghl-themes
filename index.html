@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GHL Theme Builder</title>
+  <meta name="description" content="Minimal visual theme builder for HighLevel agency users." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="app-nav" id="appNav">
+      <div class="brand-lockup">
+        <div class="brand-mark">T</div>
+        <div>
+          <strong>ThemeKit</strong>
+          <span>for HighLevel</span>
+        </div>
+      </div>
+
+      <nav aria-label="Theme builder sections">
+        <button class="nav-item active" data-section="brand">Brand</button>
+        <button class="nav-item" data-section="navigation">Navigation</button>
+        <button class="nav-item" data-section="code">Code</button>
+      </nav>
+
+      <div class="nav-footer">
+        <span class="status-dot"></span>
+        Saved locally
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+        <div>
+          <h1>GHL Theme Builder</h1>
+          <p>Build a branded HighLevel experience, then copy one Custom JS snippet.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost" id="resetBtn">Reset</button>
+          <button class="btn btn-primary" id="copyTopBtn">Copy code</button>
+        </div>
+      </header>
+
+      <div class="content-grid">
+        <section class="editor-card" aria-label="Theme controls">
+          <div class="section-panel active" data-panel="brand">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">Brand</span>
+                <h2>Visual identity</h2>
+              </div>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Theme name</span>
+                <input id="themeName" type="text" value="My Agency" maxlength="40" />
+              </label>
+              <label class="field">
+                <span>Location ID</span>
+                <input id="locationId" type="text" placeholder="Optional" autocomplete="off" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Logo URL</span>
+              <input id="logoUrl" type="url" placeholder="https://cdn.example.com/logo.png" />
+              <small>Used for the sub-account logo. Leave blank to keep the current logo.</small>
+            </label>
+
+            <div class="field-grid three color-grid">
+              <label class="field color-field">
+                <span>Sidebar</span>
+                <div class="color-control"><input id="sidebarColor" type="color" value="#111827" /><input id="sidebarColorText" type="text" value="#111827" /></div>
+              </label>
+              <label class="field color-field">
+                <span>Accent</span>
+                <div class="color-control"><input id="accentColor" type="color" value="#2563eb" /><input id="accentColorText" type="text" value="#2563eb" /></div>
+              </label>
+              <label class="field color-field">
+                <span>Nav text</span>
+                <div class="color-control"><input id="navTextColor" type="color" value="#f8fafc" /><input id="navTextColorText" type="text" value="#f8fafc" /></div>
+              </label>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Font</span>
+                <select id="fontFamily">
+                  <option value="Inter">Inter</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lexend">Lexend</option>
+                  <option value="system-ui">System UI</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Corner style</span>
+                <select id="radius">
+                  <option value="6">Compact</option>
+                  <option value="10" selected>Soft</option>
+                  <option value="16">Rounded</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Sidebar finish</span>
+              <div class="segmented" id="sidebarFinish">
+                <button type="button" class="active" data-value="solid">Solid</button>
+                <button type="button" data-value="gradient">Gradient</button>
+              </div>
+            </label>
+          </div>
+
+          <div class="section-panel" data-panel="navigation">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">Navigation</span>
+                <h2>Clean up the sidebar</h2>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Icon treatment</span>
+              <div class="segmented" id="iconStyle">
+                <button type="button" class="active" data-value="default">Default</button>
+                <button type="button" data-value="compact">Compact</button>
+                <button type="button" data-value="accent">Accent</button>
+              </div>
+            </label>
+
+            <div class="field">
+              <span>Hide menu items</span>
+              <div class="check-list" id="menuChecklist">
+                <label><input type="checkbox" value="sb_launchpad" checked /><span>Launchpad</span><code>#sb_launchpad</code></label>
+                <label><input type="checkbox" value="sb_location-mobile-app" checked /><span>Mobile App</span><code>#sb_location-mobile-app</code></label>
+                <label><input type="checkbox" value="sb_app-marketplace" checked /><span>App Marketplace</span><code>#sb_app-marketplace</code></label>
+                <label><input type="checkbox" value="sb_payments" /><span>Payments</span><code>#sb_payments</code></label>
+                <label><input type="checkbox" value="sb_email-marketing" /><span>Email Marketing</span><code>#sb_email-marketing</code></label>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Additional menu IDs</span>
+              <textarea id="customHiddenIds" rows="4" placeholder="One per line, e.g. sb_some-menu"></textarea>
+              <small>Use the element ID without the # symbol.</small>
+            </label>
+          </div>
+
+          <div class="section-panel" data-panel="code">
+            <div class="section-heading code-heading">
+              <div>
+                <span class="eyebrow">Generated code</span>
+                <h2>Paste once in HighLevel</h2>
+              </div>
+              <button class="btn btn-primary" id="copyCodeBtn">Copy code</button>
+            </div>
+
+            <div class="notice">
+              Paste this into <strong>Agency Settings → Company → Whitelabel → Custom JavaScript</strong>. It injects the CSS at runtime, so the Custom CSS field can stay empty.
+            </div>
+
+            <pre class="code-output" id="codeOutput" tabindex="0"><code></code></pre>
+          </div>
+        </section>
+
+        <aside class="preview-card" aria-label="Live preview">
+          <div class="preview-toolbar">
+            <div>
+              <strong>Live preview</strong>
+              <span id="previewThemeName">My Agency</span>
+            </div>
+            <div class="preview-dots"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="mock-app" id="mockApp">
+            <aside class="mock-sidebar" id="mockSidebar">
+              <div class="mock-logo" id="mockLogo"><span>MA</span><img alt="Agency logo preview" /></div>
+              <div class="mock-nav-item active"><span class="mock-icon">⌂</span><b>Dashboard</b></div>
+              <div class="mock-nav-item"><span class="mock-icon">◎</span><b>Conversations</b></div>
+              <div class="mock-nav-item"><span class="mock-icon">◇</span><b>Contacts</b></div>
+              <div class="mock-nav-item"><span class="mock-icon">▣</span><b>Calendars</b></div>
+              <div class="mock-nav-item optional-launchpad"><span class="mock-icon">↗</span><b>Launchpad</b></div>
+              <div class="mock-nav-item optional-payments"><span class="mock-icon">$</span><b>Payments</b></div>
+              <div class="mock-spacer"></div>
+              <div class="mock-nav-item"><span class="mock-icon">⚙</span><b>Settings</b></div>
+            </aside>
+
+            <section class="mock-main">
+              <div class="mock-header">
+                <div><small>Dashboard</small><h3>Good morning</h3></div>
+                <div class="mock-avatar">M</div>
+              </div>
+              <div class="metric-row">
+                <div class="metric"><span>Contacts</span><strong>1,284</strong><small>+8.2%</small></div>
+                <div class="metric"><span>Opportunities</span><strong>86</strong><small>+5.1%</small></div>
+                <div class="metric"><span>Revenue</span><strong>₱126k</strong><small>+12.4%</small></div>
+              </div>
+              <div class="mock-panel">
+                <div class="panel-title"><strong>Recent activity</strong><span>View all</span></div>
+                <div class="activity"><i></i><div><b>New lead created</b><span>2 minutes ago</span></div></div>
+                <div class="activity"><i></i><div><b>Appointment confirmed</b><span>18 minutes ago</span></div></div>
+                <div class="activity"><i></i><div><b>Payment received</b><span>1 hour ago</span></div></div>
+              </div>
+            </section>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
